@@ -4,48 +4,55 @@ import Square from "./Square";
 
 
 const Home = () => (
-  <ScrollView showsVerticalScrollIndicator={false}>
-  <View style={styles.container}>
-    <View style={styles.item}>
-    <Square ></Square>
-    <Square ></Square>
+<View style={styles.container}>
+    <Text style={styles.title}>Buy, Sell & Discover</Text>
+    <ScrollView showsVerticalScrollIndicator={false}>
+      <View style={styles.item}>
+        <Square />
+        <Square />
+      </View>
 
-    </View>
-    
-    {/* <View style={styles.square}>
-    <Square ></Square>
-    <Square ></Square>
-    <Square ></Square>
-    <Square ></Square> 
-    </View> */}
-  </View> 
-  </ScrollView>
+      <View style={styles.item}>
+        <Square />
+        <Square />
+      </View>
+
+      <View style={styles.item}>
+        <Square />
+        <Square />
+      </View>
+    </ScrollView>
+  </View>
 );
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection: 'row',
+    flexDirection: 'col',
     flexWrap: 'wrap',
-    alignItems: 'flex-start' // if you want to fill rows left to right
+    alignItems: 'stretch', // if you want to fill rows left to right
+    backgroundColor: 'white',
   },
   item: {
-    width: '50%' // is 50% of container width
+    width: '50%', // is 50% of container width
+    flexDirection: 'row',
+    marginTop: 10,
+    background: 'white'
+    
   },
 
   title: {
-    fontSize: 20,
+    fontSize: 30,
     fontWeight: 'bold',
-    color: 'black',
     backgroundColor: 'white',
-    marginBottom: 10,
-    paddingHorizontal: 10,
-   
+    textAlign: 'left',
+    paddingLeft: 14,
+    paddingBottom: 10,
+    paddingVertical: 10,
+    
+    
   },
-   square: {
-
-   }
- 
+   
 });
 export default Home;
 

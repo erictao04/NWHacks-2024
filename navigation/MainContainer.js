@@ -50,9 +50,9 @@ function Home() {
         style: { padding: 10, height: 70 },
       }}
     >
-      <Tab.Screen name={homeName} component={HomeScreen}  />
-      <Tab.Screen name={sellName} component={SellScreen} />
-      <Tab.Screen name={profileName} component={ProfileScreen} />
+      <Tab.Screen name={homeName} component={HomeScreen}   />
+      <Tab.Screen name={sellName} component={SellScreen}  />
+      <Tab.Screen name={profileName} component={ProfileScreen}  />
     </Tab.Navigator>
   );
 }

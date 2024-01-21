@@ -14,7 +14,6 @@ export default function Auth() {
 
   return (
     <View style={styles.totalcontainer}>
-      <Text>Auth Page</Text>
       {page == "login" ? (
         <LogIn setPage={setPage} />
       ) : (

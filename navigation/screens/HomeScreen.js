@@ -1,14 +1,53 @@
-import * as React from 'react';
-import { View, Text} from 'react-native';
+import React from 'react';
+import {StyleSheet, Text, View, ScrollView} from 'react-native';
+import Square from "./Square";
 
-export default function HomeScreen({navigation}) {
-    return(
-        <View style = {{ flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-            <Text
-                onPress={() => alert('This is the "Home" screen.')}
-                style={{ fontSize: 26, fontWeight: 'bold'}}>Home
-            </Text>
-        </View>
-    )
 
-}
+const Home = () => (
+  <ScrollView showsVerticalScrollIndicator={false}>
+  <View style={styles.container}>
+    <View style={styles.item}>
+    <Square ></Square>
+    <Square ></Square>
+
+    </View>
+    
+    {/* <View style={styles.square}>
+    <Square ></Square>
+    <Square ></Square>
+    <Square ></Square>
+    <Square ></Square> 
+    </View> */}
+  </View> 
+  </ScrollView>
+);
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    alignItems: 'flex-start' // if you want to fill rows left to right
+  },
+  item: {
+    width: '50%' // is 50% of container width
+  },
+
+  title: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: 'black',
+    backgroundColor: 'white',
+    marginBottom: 10,
+    paddingHorizontal: 10,
+   
+  },
+   square: {
+
+   }
+ 
+});
+export default Home;
+
+
+

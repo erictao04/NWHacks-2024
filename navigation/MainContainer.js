@@ -1,4 +1,3 @@
-import * as React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Ionicons from "react-native-vector-icons/Ionicons";
@@ -7,8 +6,10 @@ import { NavigationContainer } from "@react-navigation/native";
 
 // Screens
 import HomeScreen from "./screens/HomeScreen";
-import DetailsScreen from "./screens/ProfileScreen";
-import SettingsScreen from "./screens/SellScreen";
+import ProfileScreen from "./screens/ProfileScreen";
+import SellScreen from "./screens/SellScreen";
+import DetailsScreen from "./screens/DetailsScreen";
+
 
 import Auth from "../Auth";
 import { auth } from "../config";
@@ -49,9 +50,9 @@ function Home() {
         style: { padding: 10, height: 70 },
       }}
     >
-      <Tab.Screen name={homeName} component={HomeScreen} />
-      <Tab.Screen name={sellName} component={SettingsScreen} />
-      <Tab.Screen name={profileName} component={DetailsScreen} />
+      <Tab.Screen name={homeName} component={HomeScreen}  />
+      <Tab.Screen name={sellName} component={SellScreen} />
+      <Tab.Screen name={profileName} component={ProfileScreen} />
     </Tab.Navigator>
   );
 }
@@ -75,6 +76,11 @@ function MainContainer() {
             options={{ headerShown: false }}
           />
         )}
+        <Stack.Screen
+          name="Details"
+          component={DetailsScreen}
+          options={{ headerShown: true, title: 'Details' }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -1,4 +1,4 @@
-import { Camera, CameraType } from "expo-camera";
+import { Camera, CameraType, AutoFocus } from "expo-camera";
 import * as MediaLibrary from "expo-media-library";
 import { useRef, useState, useEffect } from "react";
 import * as React from "react";
@@ -10,10 +10,10 @@ import {
   StatusBar,
   SafeAreaView,
   Image,
+  TouchableOpacity,
 } from "react-native";
 import { useAuthState } from "react-firebase-hooks/auth";
 
-import SellScreen from "./SellScreen";
 import { uploadSellerClothes } from "../../utils/uploadImage";
 import { auth } from "../../config";
 import parseImage from '../../ImageRecognition';
@@ -22,17 +22,13 @@ export const CameraPage = () => {
   let cameraRef = useRef();
   const [user] = useAuthState(auth);
   const [hasCameraPermission, setHasCameraPermission] = useState();
-  const [hasMediaLibraryPermission, setHasMediaLibraryPermission] = useState();
   const [photo, setPhoto] = useState();
   const [cameraOn, setCameraOn] = useState(true);
 
   useEffect(() => {
     (async () => {
       const cameraPermission = await Camera.requestCameraPermissionsAsync();
-      const mediaLibraryPermission =
-        await MediaLibrary.requestPermissionsAsync();
       setHasCameraPermission(cameraPermission.status === "granted");
-      setHasMediaLibraryPermission(mediaLibraryPermission.status === "granted");
     })();
   }, []);
 
@@ -66,42 +62,36 @@ export const CameraPage = () => {
       .catch((e) => console.error("Error: ", e));
     };
 
-    let savePhoto = () => {
-      MediaLibrary.saveToLibraryAsync(photo.uri).then(() => {
-        setPhoto(undefined);
-      });
-    };
-
     return (
       <SafeAreaView style={styles.container}>
         <Image
           style={styles.preview}
           source={{ uri: "data:image/jpg;base64," + photo.base64 }}
         />
-        <Button title="Use Picture" onPress={sendPic} />
-        {hasMediaLibraryPermission ? (
-          <Button title="Save" onPress={savePhoto} />
-        ) : undefined}
-        <Button title="Retake" onPress={() => setPhoto(undefined)} />
+
+        <Button title="Use Picture" color="black" onPress={sendPic} />
+        <Button title="Retake" color="black" onPress={() => setPhoto(undefined)} />
       </SafeAreaView>
     );
   }
 
-  let exitCamera = async () => {
-    setCameraOn(false);
-  };
-
-  if (!cameraOn) {
-    return <SellScreen />;
-  }
-
   return (
-    <Camera style={styles.container} ref={cameraRef}>
+    <Camera style={styles.container} ref={cameraRef} autoFocus={AutoFocus.on}>
       <View style={styles.buttonContainer}>
-        <Button title="Take Pic" onPress={takePic} />
-        <Button title="Exit" onPress={exitCamera} />
+        
       </View>
-      <StatusBar style="auto" />
+
+      <SafeAreaView >
+        <View style={styles.footer}>
+
+          <TouchableOpacity onPress={takePic}>
+            
+            <View style={styles.snapButton}>
+
+            </View>
+          </TouchableOpacity>
+        </View>
+      </SafeAreaView>
     </Camera>
   );
 };
@@ -109,16 +99,34 @@ export const CameraPage = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
+    justifyContent: "space-between"
+  },
+  confirmationcontainer: {
+    flex: 1,
+    justifyContent: "space-between",
+    backgroundColor: "white",
   },
   buttonContainer: {
-    backgroundColor: "#fff",
+    backgroundColor: "red",
   },
   preview: {
     alignSelf: "stretch",
     flex: 1,
   },
+  footer: {
+    flexDirection: "row",
+    justifyContent: "space-around"
+  },
+  snapButton: {
+    width: 64,
+    height: 64,
+    borderRadius: 32,
+    borderWidth: 4,
+    borderColor: "white",
+    justifyContent: "center",
+    alignItems: "center",
+    marginBottom: 20
+  }
 });
 
 export default CameraPage;

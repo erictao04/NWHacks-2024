@@ -1,11 +1,20 @@
 import { useState } from "react";
-import { Button, StyleSheet, Text, TextInput, View, Linking, Touchable, TouchableOpacity } from "react-native";
+import {
+  Button,
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
+  Linking,
+  Touchable,
+  TouchableOpacity,
+} from "react-native";
 import {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
   signOut,
 } from "firebase/auth";
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
+import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 
 import { auth } from "./config";
 
@@ -43,39 +52,49 @@ function LogIn({ setPage }) {
 
       <Text style={styles.signUp}>
         Don't have an account?
-        <Text style={styles.signUpText} onPress={() => setPage("signup")}> Sign Up</Text>
+        <Text style={styles.signUpText} onPress={() => setPage("signup")}>
+          {" "}
+          Sign Up
+        </Text>
       </Text>
       <View style={styles.inputboxes}>
         <View style={styles.usernamePasswordBox}>
-          <MaterialIcons name='alternate-email' size={20} color='#666' />
-          <TextInput style={styles.inputUsername} 
-          onChangeText={setEmail}
-          value={email} 
-          placeholder="Enter Email" />
+          <MaterialIcons name="alternate-email" size={20} color="#666" />
+          <TextInput
+            style={styles.inputUsername}
+            onChangeText={setEmail}
+            value={email}
+            placeholder="Enter Email"
+          />
         </View>
-        
+
         <View style={styles.usernamePasswordBox}>
-        <MaterialIcons name='lock' size={20} color='#666' />
+          <MaterialIcons name="lock" size={20} color="#666" />
           <TextInput
             style={styles.inputPassword}
             onChangeText={setPassword}
             value={password}
             placeholder="Enter Password"
-            secureTextEntry={true}/>
-
+            secureTextEntry={true}
+          />
         </View>
         <View style={styles.LogInBox}>
-          <TouchableOpacity
-            onPress={loginUser}
-          >
-            <Text style={{color:"white", fontWeight:'600', fontSize:18}}>
+          <TouchableOpacity style={{ flex: 1 }} onPress={loginUser}>
+            <Text
+              style={{
+                color: "white",
+                fontWeight: "600",
+                fontSize: 18,
+                textAlign: "center",
+              }}
+            >
               Login
             </Text>
           </TouchableOpacity>
         </View>
       </View>
     </View>
-  )
+  );
 }
 
 function SignUp({ setPage }) {
@@ -97,33 +116,43 @@ function SignUp({ setPage }) {
       <Text style={styles.title}>Sign Up</Text>
       <Text style={styles.signUp}>
         Already have an account?
-        <Text style={styles.signUpText} onPress={() => setPage("login")}> Login</Text>
+        <Text style={styles.signUpText} onPress={() => setPage("login")}>
+          {" "}
+          Login
+        </Text>
       </Text>
 
       <View style={styles.inputboxes}>
         <View style={styles.usernamePasswordBox}>
-          <MaterialIcons name='alternate-email' size={20} color='#666' />
-          <TextInput style={styles.inputUsername} 
-          onChangeText={setEmail}
-          value={email} 
-          placeholder="Enter Email" />
+          <MaterialIcons name="alternate-email" size={20} color="#666" />
+          <TextInput
+            style={styles.inputUsername}
+            onChangeText={setEmail}
+            value={email}
+            placeholder="Enter Email"
+          />
         </View>
-        
+
         <View style={styles.usernamePasswordBox}>
-        <MaterialIcons name='lock' size={20} color='#666' />
+          <MaterialIcons name="lock" size={20} color="#666" />
           <TextInput
             style={styles.inputPassword}
             onChangeText={setPassword}
             value={password}
             placeholder="Enter Password"
-            secureTextEntry={true}/>
-
+            secureTextEntry={true}
+          />
         </View>
         <View style={styles.LogInBox}>
-          <TouchableOpacity
-            onPress={createUser}
-          >
-            <Text style={{color:"white", fontWeight:'600', fontSize:18}}>
+          <TouchableOpacity style={{ flex: 1 }} onPress={createUser}>
+            <Text
+              style={{
+                color: "white",
+                fontWeight: "600",
+                fontSize: 18,
+                textAlign: "center",
+              }}
+            >
               Sign Up
             </Text>
           </TouchableOpacity>
@@ -153,56 +182,58 @@ export function SignOut() {
 
 const styles = StyleSheet.create({
   usernamePasswordBox: {
-    flexDirection: 'row', 
+    flexDirection: "row",
     marginBottom: 12,
-    marginTop: 6, 
-    padding:12,
-    backgroundColor: '#F2F2F2',
-    borderRadius: 10
+    marginTop: 6,
+    padding: 12,
+    backgroundColor: "#F2F2F2",
+    borderRadius: 10,
   },
   LogInBox: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    flexDirection: 'row', 
+    alignItems: "center",
+    justifyContent: "center",
+    flexDirection: "row",
     marginBottom: 12,
-    marginTop: 6, 
+    marginTop: 6,
     padding: 12,
-    backgroundColor: '#8ED3AE',
+    backgroundColor: "#8ED3AE",
     borderRadius: 10,
   },
   inputUsername: {
     paddingLeft: 6,
+    flex: 1,
   },
   inputPassword: {
     paddingLeft: 6,
     paddingRight: 12,
+    flex: 1,
   },
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
   },
   totalcontainer: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: 'white',
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "white",
   },
   title: {
-    fontWeight: '600',
+    fontWeight: "600",
     marginBottom: 20,
     fontSize: 46,
-    color: '#74AF93',
+    color: "#74AF93",
   },
   inputboxes: {
     width: 310,
-    flexDirection:'col',
+    flexDirection: "col",
   },
   signUp: {
-    color: 'gray',
+    color: "gray",
     marginBottom: 20,
   },
   signUpText: {
-    color:'#74AF93'
-  }
+    color: "#74AF93",
+  },
 });

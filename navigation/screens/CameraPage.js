@@ -16,7 +16,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 
 import { uploadSellerClothes } from "../../utils/uploadImage";
 import { auth } from "../../config";
-import parseImage from '../../ImageRecognition';
+import parseImage from "../../ImageRecognition";
 
 export const CameraPage = () => {
   let cameraRef = useRef();
@@ -53,13 +53,14 @@ export const CameraPage = () => {
 
   if (photo) {
     let sendPic = async () => {
+      setPhoto(undefined);
       parseImage("data:image/jpg;base64," + photo.base64)
-      .then((description) => {
-        console.log("in then 1");
-        uploadSellerClothes(user.email, photo, description);
-        console.log("in then 2");
-      })
-      .catch((e) => console.error("Error: ", e));
+        .then((description) => {
+          console.log("in then 1");
+          uploadSellerClothes(user.email, photo, description);
+          console.log("in then 2");
+        })
+        .catch((e) => console.error("Error: ", e));
     };
 
     return (
@@ -70,25 +71,23 @@ export const CameraPage = () => {
         />
 
         <Button title="Use Picture" color="black" onPress={sendPic} />
-        <Button title="Retake" color="black" onPress={() => setPhoto(undefined)} />
+        <Button
+          title="Retake"
+          color="black"
+          onPress={() => setPhoto(undefined)}
+        />
       </SafeAreaView>
     );
   }
 
   return (
     <Camera style={styles.container} ref={cameraRef} autoFocus={AutoFocus.on}>
-      <View style={styles.buttonContainer}>
-        
-      </View>
+      <View style={styles.buttonContainer}></View>
 
-      <SafeAreaView >
+      <SafeAreaView>
         <View style={styles.footer}>
-
           <TouchableOpacity onPress={takePic}>
-            
-            <View style={styles.snapButton}>
-
-            </View>
+            <View style={styles.snapButton}></View>
           </TouchableOpacity>
         </View>
       </SafeAreaView>
@@ -99,7 +98,7 @@ export const CameraPage = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "space-between"
+    justifyContent: "space-between",
   },
   confirmationcontainer: {
     flex: 1,
@@ -115,7 +114,7 @@ const styles = StyleSheet.create({
   },
   footer: {
     flexDirection: "row",
-    justifyContent: "space-around"
+    justifyContent: "space-around",
   },
   snapButton: {
     width: 64,
@@ -125,8 +124,8 @@ const styles = StyleSheet.create({
     borderColor: "white",
     justifyContent: "center",
     alignItems: "center",
-    marginBottom: 20
-  }
+    marginBottom: 20,
+  },
 });
 
 export default CameraPage;

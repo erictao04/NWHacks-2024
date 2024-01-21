@@ -1,29 +1,47 @@
 import React from 'react';
 import {StyleSheet, Text, View, ScrollView} from 'react-native';
 import Square from "./Square";
+import { useState, useEffect } from "react";
+import { getImages } from "../../utils/getImages"
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { auth } from '../../config'
 
 
-const Home = () => (
-<View style={styles.container}>
-    <Text style={styles.title}>Buy, Sell & Discover</Text>
-    <ScrollView showsVerticalScrollIndicator={false}>
-      <View style={styles.item}>
-        <Square />
-        <Square />
+const Home = () => {
+  const [user] = useAuthState(auth);
+  const [images, setImages] = useState([]);
+
+  useEffect(() => {
+    setImages(getImages(user.email));
+    console.log(images)
+  }, []);
+
+  return (
+    <View style={styles.container}>
+      <Text style={styles.title}>Buy, Sell & Discover</Text>
+      <ScrollView showsVerticalScrollIndicator={false}>
+        <RenderSquare />
+      </ScrollView>
+    </View>
+  )
+
+  function RenderSquare(){
+    var imageloop = []
+    for (let i=0; i < images.length; i++) {
+      imageloop.push(
+        <View style={styles.item}>
+          <Square image={images[i]}/>
+        </View>
+      )
+    }
+    return (
+      <View style={styles.boxContainer}>
+        {imageloop}
       </View>
+    )
+  }
+}
 
-      <View style={styles.item}>
-        <Square />
-        <Square />
-      </View>
-
-      <View style={styles.item}>
-        <Square />
-        <Square />
-      </View>
-    </ScrollView>
-  </View>
-);
 
 const styles = StyleSheet.create({
   container: {
@@ -33,12 +51,13 @@ const styles = StyleSheet.create({
     alignItems: 'stretch', // if you want to fill rows left to right
     backgroundColor: 'white',
   },
-  item: {
-    width: '50%', // is 50% of container width
+  boxContainer:{
+    flex: 1,
     flexDirection: 'row',
-    marginTop: 10,
-    background: 'white'
-    
+    justifyContent: 'space-around',
+    flexWrap: 'wrap',
+  },
+  item: {    
   },
 
   title: {

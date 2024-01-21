@@ -1,12 +1,14 @@
 import React from "react";
 import { View, StyleSheet, TouchableOpacity, Image } from "react-native";
 import { useNavigation } from "@react-navigation/native"; // Import useNavigation
+import Jacket from "./jacket.jpg";
+import DetailsScreen from "./DetailsScreen"
 
 const Square = ({ image }) => {
   const navigation = useNavigation(); // Initialize navigation
 
   const handleSquarePress = () => {
-    navigation.navigate("Details"); // Navigate to 'Details' screen
+    navigation.navigate("Details", { closeUp: image }); // Navigate to 'Details' screen
   };
   // console.log(image.slice(37, 40));
   // console.log("data:image/jpg;base64," + image.slice(37, 50));
@@ -16,8 +18,7 @@ const Square = ({ image }) => {
       <View style={styles.container}>
         <Image
           style={styles.square}
-          // source={{ uri: "data:image/jpg;base64," + image.slice(37) }}
-          source={{ uri: image }}
+          source={image}
         />
       </View>
     </TouchableOpacity>

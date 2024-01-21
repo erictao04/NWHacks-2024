@@ -10,10 +10,12 @@ import {
 } from "react-native";
 import Jacket from "./jacket.jpg";
 
-const DetailsScreen = () => (
+const DetailsScreen = ({ route, navigation }) => {
+  const { closeUp } = route.params;
+  return(
   <SafeAreaView style={styles.container}>
     <View>
-      <Image style={styles.preview} source={Jacket} />
+      <Image style={styles.preview} source={closeUp} />
     </View>
     <View style={styles.LogInBox}>
       <TouchableOpacity onPress={sendAlert}>
@@ -23,7 +25,8 @@ const DetailsScreen = () => (
       </TouchableOpacity>
     </View>
   </SafeAreaView>
-);
+  )
+};
 
 const sendAlert = () => {
   alert("ITem has been bought!");

@@ -1,8 +1,6 @@
-import React from "react";
-import { StyleSheet, Text, View, ScrollView } from "react-native";
+import React from 'react';
+import {StyleSheet, Text, View, ScrollView} from 'react-native';
 import Square from "./Square";
-import { useState, useEffect } from "react";
-import { getImages, getImage } from "../../utils/getImages";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../../config";
 import Jacket from "./jacket.jpg";
@@ -15,10 +13,12 @@ import clothe5 from "./clothe5.jpg";
 
 const Home = () => {
   const [user] = useAuthState(auth);
-  const [images, setImages] = useState([]);
-
+  const [images, setImages] = useState([])
+  
   useEffect(() => {
     const array = [Jacket, clothe1, clothe2, clothe3, clothe4, clothe5 ]
+    const keys = match(user.email)
+    console.log(keys)
     setImages(array)
   }, []);
 
@@ -49,27 +49,33 @@ const Home = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection: "col",
-    flexWrap: "wrap",
-    alignItems: "stretch", // if you want to fill rows left to right
-    backgroundColor: "white",
+    flexDirection: 'col',
+    flexWrap: 'wrap',
+    alignItems: 'stretch', // if you want to fill rows left to right
+    backgroundColor: 'white',
   },
-  boxContainer: {
-    flex: 1,
-    flexDirection: "row",
-    justifyContent: "space-around",
-    flexWrap: "wrap",
+  item: {
+    width: '50%', // is 50% of container width
+    flexDirection: 'row',
+    marginTop: 10,
+    background: 'white'
+    
   },
-  item: {},
 
   title: {
     fontSize: 30,
-    fontWeight: "bold",
-    backgroundColor: "white",
-    textAlign: "left",
+    fontWeight: 'bold',
+    backgroundColor: 'white',
+    textAlign: 'left',
     paddingLeft: 14,
     paddingBottom: 10,
     paddingVertical: 10,
+    
+    
   },
+   
 });
 export default Home;
+
+
+

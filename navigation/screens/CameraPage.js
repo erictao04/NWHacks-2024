@@ -53,6 +53,7 @@ export const CameraPage = () => {
 
   if (photo) {
     let sendPic = async () => {
+      alert("Your clothing has been uploaded!")
       setPhoto(undefined);
       parseImage("data:image/jpg;base64," + photo.base64)
         .then((description) => {

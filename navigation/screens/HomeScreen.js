@@ -5,14 +5,21 @@ import { useState, useEffect } from "react";
 import { getImages, getImage } from "../../utils/getImages";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../../config";
+import Jacket from "./jacket.jpg";
+import clothe1 from "./clothe1.jpg";
+import clothe2 from "./clothe2.jpg";
+import clothe3 from "./clothe3.jpg";
+import clothe4 from "./clothe4.jpg";
+import clothe5 from "./clothe5.jpg";
+
 
 const Home = () => {
   const [user] = useAuthState(auth);
-  const [images, setImages] = useState("");
+  const [images, setImages] = useState([]);
 
   useEffect(() => {
-    // getImages(user.email, setImages);
-    getImage(setImages);
+    const array = [Jacket, clothe1, clothe2, clothe3, clothe4, clothe5 ]
+    setImages(array)
   }, []);
 
   return (
@@ -29,7 +36,7 @@ const Home = () => {
     for (let i = 0; i < 6; i++) {
       imageloop.push(
         <View key={i} style={styles.item}>
-          <Square image={images} />
+          <Square image={images[i]} />
         </View>
       );
     }

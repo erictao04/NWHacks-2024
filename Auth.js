@@ -5,9 +5,11 @@ import {
   Text,
   TextInput,
   View,
-  Linking,
-  Touchable,
   TouchableOpacity,
+  Image,
+  SafeAreaView,
+  TouchableWithoutFeedback,
+  Keyboard
 } from "react-native";
 import {
   signInWithEmailAndPassword,
@@ -17,18 +19,31 @@ import {
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 
 import { auth } from "./config";
+import Logo from "./logo1.png";
 
+
+const handleOutsideClick = () => {
+  Keyboard.dismiss();
+}
 export default function Auth() {
   const [page, setPage] = useState("login");
 
   return (
-    <View style={styles.totalcontainer}>
-      {page == "login" ? (
-        <LogIn setPage={setPage} />
-      ) : (
-        <SignUp setPage={setPage} />
-      )}
-    </View>
+    <TouchableWithoutFeedback onPress={handleOutsideClick}>
+      <SafeAreaView style={styles.totalcontainer}>
+        <View style={styles.totalcontainer}>
+          <Image
+                style={styles.preview}
+                source={Logo}
+              />
+          {page == "login" ? (
+            <LogIn setPage={setPage} />
+          ) : (
+            <SignUp setPage={setPage} />
+          )}
+        </View>
+      </SafeAreaView>
+    </TouchableWithoutFeedback>
   );
 }
 
@@ -235,5 +250,11 @@ const styles = StyleSheet.create({
   },
   signUpText: {
     color: "#74AF93",
+  },
+  preview: {
+    marginBottom: -300,
+    marginTop: 40,
+    resizeMode: 'contain',
+    height: 200
   },
 });

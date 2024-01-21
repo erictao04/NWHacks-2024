@@ -47,7 +47,7 @@ const ProfileScreen = ({ navigation }) => {
 
         <View style={styles.profileDetails}>
           <Text style={styles.detailLabel}>Email:</Text>
-          <Text style={styles.detailValue}>johndoe@example.com</Text>
+          <Text style={styles.detailValue}>{user.email}</Text>
         </View>
 
         {/* AI Part TextInput */}

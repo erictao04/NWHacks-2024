@@ -6,10 +6,8 @@ import { NavigationContainer } from "@react-navigation/native";
 
 // Screens
 import HomeScreen from "./screens/HomeScreen";
-import ProfileScreen from "./screens/ProfileScreen";
-import SellScreen from "./screens/SellScreen";
-import DetailsScreen from "./screens/DetailsScreen";
-
+import DetailsScreen from "./screens/ProfileScreen";
+import CameraPage from "./screens/CameraPage";
 
 import Auth from "../Auth";
 import { auth } from "../config";
@@ -27,6 +25,7 @@ function Home() {
     <Tab.Navigator
       initialRouteName={homeName}
       screenOptions={({ route }) => ({
+        tabBarStyle: { height: 80 },
         tabBarIcon: ({ focused, color, size }) => {
           let iconName;
           let rn = route.name;
@@ -34,7 +33,7 @@ function Home() {
           if (rn === homeName) {
             iconName = focused ? "home" : "home-outline";
           } else if (rn === sellName) {
-            iconName = focused ? "pricetag" : "pricetag-outline";
+            iconName = focused ? "camera" : "camera-outline";
           } else if (rn === profileName) {
             iconName = focused ? "person" : "person-outline";
           }
@@ -44,15 +43,14 @@ function Home() {
         },
       })}
       tabBarOptions={{
-        activeTintColor: "tomato",
+        activeTintColor: "#8ED3AE",
         inactiveTintColor: "grey",
-        labelStyle: { paddingBottom: 10, fontSize: 10 },
-        style: { padding: 10, height: 70 },
+        labelStyle: { fontSize: 10, marginTop: -10 },
       }}
     >
-      <Tab.Screen name={homeName} component={HomeScreen}   />
-      <Tab.Screen name={sellName} component={SellScreen}  />
-      <Tab.Screen name={profileName} component={ProfileScreen}  />
+      <Tab.Screen name={homeName} component={HomeScreen} />
+      <Tab.Screen name={sellName} component={CameraPage} options={{ headerShown:false }} />
+      <Tab.Screen name={profileName} component={DetailsScreen} />
     </Tab.Navigator>
   );
 }

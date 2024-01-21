@@ -1,4 +1,4 @@
-import { ref as storeRef, uploadString } from "firebase/storage";
+import { ref as storeRef, uploadBytesResumable } from "firebase/storage";
 import { ref as databaseRef, set, push } from "firebase/database";
 import { db, storage } from "../config";
 
@@ -9,8 +9,9 @@ export const uploadSellerClothes = (email, photo, description) => {
   const d = new Date();
   const time = d.getTime();
   const storageRef = storeRef(storage, email + "-" + time);
+  const blob = new Blob([photo.base64]);
 
-  uploadString(storageRef, photo.base64, "base64")
+  uploadBytesResumable(storageRef, blob)
     .then((snapshot) => {
       console.log("Successfully uploaded image");
       set(newPostRef, {

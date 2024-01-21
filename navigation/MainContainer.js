@@ -6,11 +6,12 @@ import { NavigationContainer } from "@react-navigation/native";
 
 // Screens
 import HomeScreen from "./screens/HomeScreen";
-import DetailsScreen from "./screens/ProfileScreen";
+import ProfileScreen from "./screens/ProfileScreen";
 import CameraPage from "./screens/CameraPage";
 
 import Auth from "../Auth";
 import { auth } from "../config";
+import DetailsScreen from "./screens/DetailsScreen";
 
 //Screen names
 const homeName = "Home";
@@ -50,7 +51,7 @@ function Home() {
     >
       <Tab.Screen name={homeName} component={HomeScreen} />
       <Tab.Screen name={sellName} component={CameraPage} options={{ headerShown:false }} />
-      <Tab.Screen name={profileName} component={DetailsScreen} />
+      <Tab.Screen name={profileName} component={ProfileScreen} />
     </Tab.Navigator>
   );
 }

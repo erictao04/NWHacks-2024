@@ -1,40 +1,42 @@
-import React from 'react';
-import { View, StyleSheet, TouchableOpacity } from 'react-native';
-import { useNavigation } from '@react-navigation/native'; // Import useNavigation
+import React from "react";
+import { View, StyleSheet, TouchableOpacity, Image } from "react-native";
+import { useNavigation } from "@react-navigation/native"; // Import useNavigation
 
-const Square = () => {
+const Square = ({ image }) => {
   const navigation = useNavigation(); // Initialize navigation
 
   const handleSquarePress = () => {
-    navigation.navigate('Details'); // Navigate to 'Details' screen
+    navigation.navigate("Details"); // Navigate to 'Details' screen
   };
+  // console.log(image.slice(37, 40));
+  // console.log("data:image/jpg;base64," + image.slice(37, 50));
 
   return (
-    <>
     <TouchableOpacity onPress={handleSquarePress}>
       <View style={styles.container}>
-        <View style={styles.square} />
+        <Image
+          style={styles.square}
+          // source={{ uri: "data:image/jpg;base64," + image.slice(37) }}
+          source={{ uri: image }}
+        />
       </View>
     </TouchableOpacity>
-
-    </>
-
-    
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    flexDirection: 'row',
-    backgroundColor: 'white',
+    flexDirection: "row wrap",
+    backgroundColor: "white",
     flex: 1,
   },
   square: {
-    backgroundColor: '#AEDCAE',
-    width: 195,
+    // backgroundColor: "#AEDCAE",
+    width: 180,
     height: 250,
-    marginHorizontal: 10,
-    borderRadius: 15,
+    borderRadius: 10,
+    marginTop: 10,
+    marginBottom: 10,
   },
 });
 

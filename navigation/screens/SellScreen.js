@@ -1,7 +1,8 @@
-import * as React from "react";
-import { View, Text, Button } from "react-native";
-import { CameraPage } from "./CameraPage";
-import { useState } from "react";
+import * as React from 'react';
+import { View, Text, Button } from 'react-native';
+import { CameraPage } from './CameraPage'
+import { useState } from 'react';
+// import ImageRecognition from '../../ImageRecognition';
 
 export default function SellScreen({ navigation }) {
   const [cameraOn, setCameraOn] = useState(false);

@@ -16,6 +16,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import SellScreen from "./SellScreen";
 import { uploadSellerClothes } from "../../utils/uploadImage";
 import { auth } from "../../config";
+import parseImage from '../../ImageRecognition';
 
 export const CameraPage = () => {
   let cameraRef = useRef();
@@ -55,8 +56,14 @@ export const CameraPage = () => {
   };
 
   if (photo) {
-    let sendPic = () => {
-      uploadSellerClothes(user.email, photo, "chat gpt description");
+    let sendPic = async () => {
+      parseImage("data:image/jpg;base64," + photo.base64)
+      .then((description) => {
+        console.log("in then 1");
+        uploadSellerClothes(user.email, photo, description);
+        console.log("in then 2");
+      })
+      .catch((e) => console.error("Error: ", e));
     };
 
     let savePhoto = () => {

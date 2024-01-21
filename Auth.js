@@ -175,7 +175,7 @@ export function SignOut() {
 
   return (
     <View>
-      <Button title="Sign out" onPress={signout} />
+      <Button color="white" title="Sign out" onPress={signout} />
     </View>
   );
 }

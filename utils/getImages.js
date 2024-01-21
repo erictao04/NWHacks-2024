@@ -2,7 +2,24 @@ import { ref, get, child } from "firebase/database";
 import { ref as storageRef, getBlob } from "firebase/storage";
 import { auth, db, storage } from "../config";
 
-export function getImages(email) {
+const blobToBase64 = (blob, setImage) =>
+  new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(blob);
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = (error) => reject(error);
+  });
+
+export async function getImage(setImages) {
+  blob = await getBlob(
+    storageRef(storage, "erictao04@gmail.com-1705832192755")
+  );
+  base64Url = await blobToBase64(blob);
+  setImages(base64Url);
+}
+
+export async function getImages(email, setImages) {
+  return;
   // get(child(ref(db), `sellerClothes`))
   //   .then((snapshot) => {
   //     if (snapshot.exists()) {
@@ -23,18 +40,17 @@ export function getImages(email) {
     "erictao04@gmail.com-1705832153877",
     "erictao04@gmail.com-1705832136381",
   ];
-  images = {};
+  images = [];
   //   getBlob(storageRef(storage, "erictao04@gmail.com-1705832192755"))
   //     .then((blob) => blob.arrayBuffer())
   //     .then((buffer) => console.log(buffer));
-
+  filereader = new FileReader();
   for (let imageId of imageIds) {
-    getBlob(storageRef(storage, imageId)).then((blob) => {
-      console.log("downloaded");
-      images[imageId] = blob;
-      console.log(images);
-    });
+    blob = await getBlob(storageRef(storage, imageId));
+    base64Url = await blobToBase64(blob);
+    images.push(base64Url);
+    console.log(imageId);
   }
-
-  return images;
+  //   console.log(images);
+  setImages(images);
 }

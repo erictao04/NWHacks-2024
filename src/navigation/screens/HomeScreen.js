@@ -4,13 +4,13 @@ import Square from "./Square";
 import { useState, useEffect } from "react";
 import { getImages, getImage } from "../../utils/getImages";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { auth } from "../../config";
+import { auth } from "../../../config";
 import Jacket from "./jacket.jpg";
-import clothe1 from "./clothe1.jpg";
-import clothe2 from "./clothe2.jpg";
-import clothe3 from "./clothe3.jpg";
-import clothe4 from "./clothe4.jpg";
-import clothe5 from "./clothe5.jpg";
+import clothes1 from "./clothes1.jpg";
+import clothes2 from "./clothes2.jpg";
+import clothes3 from "./clothes3.jpg";
+import clothes4 from "./clothes4.jpg";
+import clothes5 from "./clothes5.jpg";
 
 
 const Home = () => {
@@ -18,7 +18,9 @@ const Home = () => {
   const [images, setImages] = useState([]);
 
   useEffect(() => {
-    const array = [Jacket, clothe1, clothe2, clothe3, clothe4, clothe5 ]
+    const array = [Jacket, clothes1, clothes2, clothes3, clothes4, clothes5 ]
+    const keys = match(user.email)
+    console.log(keys)
     setImages(array)
   }, []);
 

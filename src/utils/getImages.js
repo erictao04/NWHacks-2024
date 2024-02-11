@@ -1,6 +1,6 @@
 import { ref, get, child } from "firebase/database";
 import { ref as storageRef, getBlob } from "firebase/storage";
-import { auth, db, storage } from "../config";
+import { auth, db, storage } from "../../config";
 
 const blobToBase64 = (blob, setImage) =>
   new Promise((resolve, reject) => {

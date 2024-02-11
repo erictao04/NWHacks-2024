@@ -19,7 +19,7 @@ import {
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 
 import { auth } from "./config";
-import Logo from "./logo1.png";
+import Logo from "./src/assets/logo.png";
 
 
 const handleOutsideClick = () => {

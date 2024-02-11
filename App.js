@@ -1,4 +1,4 @@
-import MainContainer from "./navigation/MainContainer";
+import MainContainer from "./src/navigation/MainContainer";
 import { decode } from "base-64";
 
 if (typeof atob === "undefined") {

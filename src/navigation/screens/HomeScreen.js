@@ -19,8 +19,6 @@ const Home = () => {
 
   useEffect(() => {
     const array = [Jacket, clothes1, clothes2, clothes3, clothes4, clothes5 ]
-    const keys = match(user.email)
-    console.log(keys)
     setImages(array)
   }, []);
 

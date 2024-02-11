@@ -16,7 +16,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 
 import { uploadSellerClothes } from "../../utils/uploadImage";
 import { auth } from "../../../config";
-import parseImage from '../../utils/ImageRecognition';
+import parseImage from "../../utils/ImageRecognition";
 
 export const CameraPage = () => {
   let cameraRef = useRef();

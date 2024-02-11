@@ -18,7 +18,7 @@ const Home = () => {
   const [images, setImages] = useState([]);
 
   useEffect(() => {
-    const array = [Jacket, clothes1, clothes2, clothes3, clothes4, clothes5 ]
+    const array = [Jacket, clothes1, clothes2, clothes3, clothes4, clothes5]
     setImages(array)
   }, []);
 

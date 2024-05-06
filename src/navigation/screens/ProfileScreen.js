@@ -9,7 +9,7 @@ import {
   TouchableWithoutFeedback,
   Keyboard,
 } from "react-native";
-import { SignOut } from "../../Auth.js";
+import { SignOut } from "../../../Auth.js";
 
 import {
   ref as databaseRef,
@@ -20,7 +20,7 @@ import {
   get,
 } from "firebase/database";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { auth, db } from "../../config.js";
+import { auth, db } from "../../../config.js";
 
 const ProfileScreen = ({ navigation }) => {
   const [aiPart, setAIPart] = useState("");

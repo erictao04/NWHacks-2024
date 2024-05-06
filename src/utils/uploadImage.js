@@ -1,6 +1,6 @@
 import { ref as storeRef, uploadBytesResumable } from "firebase/storage";
 import { ref as databaseRef, set, push } from "firebase/database";
-import { db, storage } from "../config";
+import { db, storage } from "../../config";
 
 const postListRef = databaseRef(db, "sellerClothes");
 const newPostRef = push(postListRef);
